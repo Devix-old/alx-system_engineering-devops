@@ -1,2 +1,1 @@
-#!/bin/bash
-ln -s /bin/ls _ls_
+lrwxrwxrwx 1 root root    7 Mar  8 09:26 _ls_ -> /bin/ls
