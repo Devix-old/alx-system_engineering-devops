@@ -1,2 +1,2 @@
 #!/bin/bash
-if ls -l 0-iam_betty | cut -d' ' -f3 == guillaume; then	chown betty hello fi
+chown --from=guillaume betty hello
