@@ -11,14 +11,17 @@ start() {
 }
 
 stop() {
+    if [ -e "$MY_PROCESS_PID" ]; then
         sudo pkill -f "./manage_my_process"
         sudo rm "$MY_PROCESS_PID"
         echo "manage_my_process stopped"
+    fi
 }
 
-restart() {
-    stop
-    start
+restart() { 
+    $0 stop >& /dev/null
+    $0 start >& /dev/null
+    echo "manage_my_process restarted"
 }
 
 if [ "$1" == "start" ]; then
@@ -29,5 +32,4 @@ elif [ "$1" == "restart" ]; then
     restart
 else
     echo "Usage: manage_my_process {start|stop|restart}"
-    exit 1
 fi
