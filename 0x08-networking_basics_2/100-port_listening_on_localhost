@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# this script use nc to listen on local host on
+
+nc -l localhost 98
