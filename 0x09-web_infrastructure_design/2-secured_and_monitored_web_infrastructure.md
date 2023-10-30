@@ -1,6 +1,6 @@
 # Secured Web Infrastructure Design
 
-![Secured Web Infrastructure](2-secured_web_infrastructure.png)
+![Secured Web Infrastructure](2-secured_and_monitored_web_infrastructure.png)
 
 ## User Access:
 
