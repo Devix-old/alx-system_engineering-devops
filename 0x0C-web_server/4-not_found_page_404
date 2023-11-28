@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script configures Nginx to have a custom 404 page
+
+# Configure Nginx for custom 404 page
+sudo sed -i '/server_name localhost;/a \\terror_page 404 /custom_404;' /etc/nginx/sites-available/default
+sudo sed -i '/location \/ {/a \\tlocation = /custom_404 { internal; default_type "text/html"; return 404 "Ceci n'\''est pas une page"; }' /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx restart
