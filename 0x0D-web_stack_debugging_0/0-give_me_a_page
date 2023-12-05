@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script configures Apache to return a page containing "Hello Holberton"
+
+# Install Apache
+apt-get update
+apt-get install -y apache2
+
+# Start Apache
+service apache2 start
+
+# Create a simple HTML page
+echo "Hello Holberton" > /var/www/html/index.html
+
+# Ensure the Apache process is running
+ps aux | grep apache2
+
+# Leave the container running
+tail -f /dev/null
+
