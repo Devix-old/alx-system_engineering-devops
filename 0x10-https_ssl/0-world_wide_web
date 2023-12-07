@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Function to display information about a subdomain
+display_subdomain_info() {
+    local subdomain="$2"
+    local domain="$1"
+    local dig_output=$(dig "$subdomain.$domain")
+
+    # Extracting information using awk
+    local record_type=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $4}')
+    local destination=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $5}')
+
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
+# Main script
+if [ "$#" -eq 2 ]; then
+    # Display information for the specified subdomain
+    display_subdomain_info "$1" "$2"
+else
+    # Display information for default subdomains
+    display_subdomain_info "$1" "www"
+    display_subdomain_info "$1" "lb-01"
+    display_subdomain_info "$1" "web-01"
+    display_subdomain_info "$1" "web-02"
+fi
