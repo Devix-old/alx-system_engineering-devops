@@ -2,15 +2,12 @@
 
 # Function to display information about a subdomain
 display_subdomain_info() {
-    local subdomain="$2"
-    local domain="$1"
-    local dig_output=$(dig "$subdomain.$domain")
 
     # Extracting information using awk
-    local record_type=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $4}')
-    local destination=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $5}')
+    record_type=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $4}')
+    destination=$(dig "$2"."$1" | grep -A1 "ANSWER SECTION" | awk 'NR==2 {print $5}')
 
-    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    echo "The subdomain $2 is a $record_type record and points to $destination"
 }
 
 # Main script
