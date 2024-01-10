@@ -1,30 +1,23 @@
 #!/usr/bin/env bash
 # Configures an Ubuntu machine with Nginx
 
-# Define paths and configurations
-NGINX_CONFIG_FILE="/etc/nginx/sites-available/default"
-ERROR_PAGE_FILE="/usr/share/nginx/html/404error.html"
-
-REDIRECT_CONFIG="\n\tlocation /redirect_me {\n\t\treturn 301 https://youtu.be/dQw4w9WgXcQ;\n\t}\n"
-ERROR_PAGE_CONFIG="\n\terror_page 404 /404error.html;\n\tlocation = /404error.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}\n"
-CUSTOM_HEADER_CONFIG='\n\tadd_header X-Served-By $hostname;\n'
-
-HELLO_STRING="Hello World!"
-NOT_A_PAGE_STRING="Ceci n'est pas une page"
-
 # Update and install Nginx
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
+apt-get update -y
+apt-get install nginx -y
 
 # Create a simple HTML file with "Hello World!"
-echo "$HELLO_STRING" > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # Configure Nginx with redirection, error page, and custom header
-sed -i "37i\ $REDIRECT" "$NGINX_CONFIG_FILE"
-echo "$NOT_A_PAGE_STRING" > "$ERROR_PAGE_FILE"
-sed -i "37i\ $ERROR_PAGE_CONFIG" "$NGINX_CONFIG_FILE"
-sed -i "37i\ $CUSTOM_HEADER_CONFIG" "$NGINX_CONFIG_FILE"
-
-# Restart Nginx to apply the changes
+echo 'server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        add_header X-Served-By $HOSTNAME;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}' > /etc/nginx/sites-available/default
 service nginx restart
