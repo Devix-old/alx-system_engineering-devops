@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 # This script install your load balancer
-sudo apt-get -y update
-sudo apt-get -y install haproxy
-sudo chown  $USER:$USER /etc/haproxy/haproxy.cfg
 
-echo "
-frontend estebanweb
-    bind *:80
+sudo apt-get update -y
+sudo apt-get install -y haproxy
+sudo echo 'frontend web
+    bind 0.0.0.0:80
     mode http
-    default_backend app
-backend app
-    balance roundrobin
-    server 1542-web-01 34.73.222.49:80 check
-    server 1542-web-02 	54.82.121.70:80 check" >> /etc/haproxy/haproxy.cfg
+    default_backend webservers
 
+backend webservers
+    mode http
+    balance roundrobin
+    server web-01 54.237.91.205:80 check
+    server web-02 35.174.205.66:80 check' >> /etc/haproxy/haproxy.cfg
 sudo service haproxy restart

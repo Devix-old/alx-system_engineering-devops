@@ -2,14 +2,14 @@
 # Configures an Ubuntu machine with Nginx
 
 # Update and install Nginx
-apt-get update -y
-apt-get install nginx -y
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
 # Create a simple HTML file with "Hello World!"
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # Configure Nginx with redirection, error page, and custom header
-echo 'server {
+sudo echo 'server {
         listen 80 default_server;
         listen [::]:80 default_server;
         root /var/www/html;
@@ -20,4 +20,4 @@ echo 'server {
                 try_files $uri $uri/ =404;
         }
 }' > /etc/nginx/sites-available/default
-service nginx restart
+sudo service nginx restart
