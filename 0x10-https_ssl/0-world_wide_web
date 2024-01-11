@@ -3,12 +3,15 @@
 
 get_subdomain_info() {
     subdomain=$(echo "$1" | cut -d'.' -f1)
-    record=$(dig "$1" | awk '/ANSWER SECTION:/{getline;print "$4"}')
-    ip=$(dig "$1" | awk '/ANSWER SECTION:/{getline;print "$5"}')
+    record=$(dig "$1" | awk '/ANSWER SECTION:/{getline;print $4}')
+    ip=$(dig "$1" | awk '/ANSWER SECTION:/{getline;print $5}')
     echo "The subdomain $subdomain is a $record record and points to $ip"
 }
-
-get_subdomain_info www."$1"
-get_subdomain_info lb-01."$1"
-get_subdomain_info web-01."$1"
-get_subdomain_info web-02."$1"
+if [ "$#" -eq 1 ]; then
+    get_subdomain_info www."$1"
+    get_subdomain_info lb-01."$1"
+    get_subdomain_info web-01."$1"
+    get_subdomain_info web-02."$1"
+elif [ "$#" -eq 2 ]; then
+    get_subdomain_info "$2"."$1"
+fi
