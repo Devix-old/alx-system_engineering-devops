@@ -4,8 +4,8 @@ Fetch user and task data from JSONPlaceholder API and print completed task info
 Usage: python script_name.py <user_id>
 """
 
-import urllib.request
 import json
+import urllib.request
 import sys
 
 
@@ -32,7 +32,7 @@ def print_completed_tasks(todo_data, user_id):
     """Print titles of completed tasks for a user."""
     for todo in todo_data:
         if todo["userId"] == user_id and todo["completed"]:
-            print(" \t" + todo["title"])
+            print("\t " + todo["title"])
 
 
 if __name__ == "__main__":
