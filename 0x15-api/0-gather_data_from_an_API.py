@@ -5,8 +5,8 @@ Usage: python script_name.py <user_id>
 """
 
 import json
-import urllib.request
 import sys
+import urllib.request
 
 
 def get_user_name(user_data, user_id):
