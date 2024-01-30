@@ -41,6 +41,5 @@ def export_tasks_all_employees():
         json.dump(all_tasks_data, json_file)
 
 
-
 if __name__ == "__main__":
     export_tasks_all_employees()
