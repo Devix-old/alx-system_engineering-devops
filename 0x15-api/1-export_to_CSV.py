@@ -4,8 +4,8 @@ Fetch user and task data from JSONPlaceholder API and print completed task info
 Usage: python script_name.py <user_id>
 """
 import csv
-import sys
 import requests as r
+import sys
 
 
 if __name__ == "__main__":
