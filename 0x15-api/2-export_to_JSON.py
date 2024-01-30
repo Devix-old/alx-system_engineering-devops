@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Export tasks data for a given USER_ID from JSONPlaceholder API
+and save it in a JSON file with the format USER_ID.json.
+Usage: ./script.py USER_ID
+"""
 import json
 import requests
 from sys import argv
