@@ -1,6 +1,6 @@
-import requests
-
+#!/usr/bin/python3
 """A module for fetching titles from the hot section of a subreddit."""
+import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):

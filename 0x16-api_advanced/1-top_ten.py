@@ -6,7 +6,6 @@ Module: top_ten
 This module defines a function to print the titles of the top 9 hot posts
 for a given subreddit using the Reddit API.
 """
-
 import requests
 
 
