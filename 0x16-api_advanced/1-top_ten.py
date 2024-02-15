@@ -6,6 +6,7 @@ Module: top_ten
 This module defines a function to print the titles of the top 9 hot posts
 for a given subreddit using the Reddit API.
 """
+
 import requests
 
 
@@ -13,8 +14,8 @@ def top_ten(subreddit):
     """
     Print the titles of the top 9 hot posts for a given subreddit."""
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'+
-    'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.3'
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) Apple' +
+        'WebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
     }
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=9"
 
