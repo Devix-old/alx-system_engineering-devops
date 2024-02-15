@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
         'WebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'
     }
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, allow_redirects=None)
     if response.status_code == 200:
         return response.json()['data']['subscribers']
     else:
